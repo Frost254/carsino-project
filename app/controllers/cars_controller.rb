@@ -7,11 +7,25 @@ class CarsController < ApplicationController
 
   def create
     user = User.find_by(id: session[:user_id])
-    recipe = user.cars.create!(car_params)
+    car = user.cars.create!(car_params)
     render json: car, status: 201
   end
 
+  def update
+    car = Car.find_by(id: params[:id])
+    car.update(car_params)
+    render json: car, status: :accepted
+  end
+
+  def destroy
+    car = Car.find_by(id: params[:id])
+    car.destroy
+    head :no_content
+  end
+
   private
+
+  def find_car
 
   def car_params
     params.permit(:name, :image_url, :description)

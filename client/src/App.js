@@ -17,6 +17,10 @@ function App() {
     });
   }, []);
 
+  function handleDelete () {
+    fetch("/cars")
+  }
+
   if (!user) return <Login onLogin={setUser} />;
 
   return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { Button, Error, FormField, Input, Label, Textarea } from "./styles";
+import { Box, Button, Error, FormField, Input, Label, Textarea } from "./styles";
 
 function NewCar({ user }) {
   const [name, setName] = useState("My New Car");
@@ -79,13 +79,15 @@ function NewCar({ user }) {
         </form>
       </WrapperChild>
       <WrapperChild>
-        <h1>{name}</h1>
-        <img src={image_url} alt="car"/>
-        <p>
+        <Box>
+          <h1>{name}</h1>
+          <img src={image_url} alt="car"/>
+          <p>
           <em>: {description}</em>
-          &nbsp;·&nbsp;
+            &nbsp;·&nbsp;
           <cite>By {user.username}</cite>
-        </p>
+          </p>
+        </Box>
       </WrapperChild>
     </Wrapper>
   );
