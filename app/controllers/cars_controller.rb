@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
   before_action :authorize
+  skip_before_acton :index
 
   def index
     render json: Car.all, status: :ok
@@ -12,13 +13,13 @@ class CarsController < ApplicationController
   end
 
   def update
-    car = Car.find_by(id: params[:id])
+    car = find_car
     car.update(car_params)
     render json: car, status: :accepted
   end
 
   def destroy
-    car = Car.find_by(id: params[:id])
+    car = find_car
     car.destroy
     head :no_content
   end
@@ -26,6 +27,8 @@ class CarsController < ApplicationController
   private
 
   def find_car
+    Car.find(params[:id])
+  end
 
   def car_params
     params.permit(:name, :image_url, :description)
