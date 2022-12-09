@@ -1,12 +1,11 @@
 import React from "react";
 import { Box, Button } from "./styles";
-
+import styled from "styled-components";
 
 function CarCard({ car }) {
-  const { id, name, image_url, description, rating } = car;
 
   function handleDeleteClick() {
-    fetch(`/cars/${id}`, {
+    fetch(`/cars/${car.id}`, {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
@@ -20,7 +19,7 @@ function CarCard({ car }) {
       rating: car.rating + 1,
     };
 
-    fetch(`/cars/${id}`, {
+    fetch(`/cars/${car.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -31,19 +30,28 @@ function CarCard({ car }) {
   }
 
   return (
-    <div className="card">
-      <h2>{name}</h2>
-      <img src={image_url} alt={name}/>
-      <p>{rating} thumbs up </p>
-      <p>{description}</p>
-      <button onClick={handleLikeClick}>
-        Add Rating {"<3"}
-      </button>
-      <button  onClick={handleDeleteClick}>
-        Delete to Car
-      </button>
-    </div>
+    <Car key={car.id}>
+            <Box>
+              <h2>{car.name}</h2>
+              <p>
+                <img src={car.image_url} alt="car"/>
+                <em>Description: {car.description} minutes</em>
+                &nbsp;·&nbsp;
+                <cite>By {car.user.username}</cite>
+              </p>
+              <Button onClick={handleDeleteClick}>
+                Delete Car
+              </Button>
+              <Button onClick={handleLikeClick}>
+                Add Rating to Car
+              </Button>
+            </Box>
+    </Car>
   );
 }
+
+const Car = styled.article`
+  margin-bottom: 24px;
+`;
 
 export default CarCard;
