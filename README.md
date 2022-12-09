@@ -12,7 +12,7 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
-The project uses POSTGRES db and data can be sent to the back-end by filling in the forms
+The project uses POSTGRES db and data can be sent to the back-end by filling in the forms and submitting your data. Once you insert the car you want you will be redirected to the main car page where you can view a list of all available cars.
 
 * Database initialization
 

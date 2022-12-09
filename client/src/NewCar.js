@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label, Textarea } from "./styles";
 
-function NewCar({ user }) {
+function NewCar({ user, onAddCar }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -34,15 +34,24 @@ function NewCar({ user }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newCar),
-    }).then((r) => {
+      body: JSON.stringify(newCar)
+    })
+    .then((r) => {
       setIsLoading(false);
       if (r.ok) {
         history.push("/");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
-    });
+    })
+    .then((newCar) => {
+        setFormData({
+          name: "",
+          image_url: "",
+          description: ""
+        });
+        onAddCar(newCar);
+      })
   }
 
   return (
