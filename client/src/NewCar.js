@@ -36,9 +36,6 @@ function NewCar({ user }) {
     });
   }
 
-
-
-
   return (
     <Wrapper>
       <WrapperChild>
