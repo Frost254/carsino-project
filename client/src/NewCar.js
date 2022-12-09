@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { Box, Button, Error, FormField, Input, Label, Textarea } from "./styles";
+import { Button, Error, FormField, Input, Label, Textarea } from "./styles";
 
 function NewCar({ user }) {
   const [name, setName] = useState("My New Car");
