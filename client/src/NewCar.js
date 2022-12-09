@@ -89,24 +89,6 @@ function NewCar({ user }) {
           </FormField>
         </form>
       </WrapperChild>
-      <WrapperChild>
-        <Box>
-          <h1>{name}</h1>
-          <img src={image_url} alt="car"/>
-          <p>
-            This user gave it {rating} thumbs up!
-          <em>: {description}</em>
-            &nbsp;·&nbsp;
-          <cite>By {user.username}</cite>
-          </p>
-          <Button color="primary" type="delete">
-            Delete Car
-          </Button>
-          <Button color="primary" type="submit">
-            Add Car Rating
-          </Button>
-        </Box>
-      </WrapperChild>
     </Wrapper>
   );
 }
