@@ -22,7 +22,7 @@ function CarList() {
 
   return (
     <Wrapper>
-      {cars.length > 0 ? {carCards} : (
+      {cars.length > 0 ? (carCards) : (
         <>
           <h2>No Cars Found</h2>
           <Button as={Link} to="/new">

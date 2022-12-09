@@ -24,7 +24,7 @@ function NavBar({ user, setUser }) {
         <Button variant="outline" onClick={handleLogoutClick}>
           Logout
         </Button>
-        <h2>{user.username} is currently signed in</h2>
+        <p>{user.username} is currently signed in</p>
       </Nav>
     </Wrapper>
   );
