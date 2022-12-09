@@ -12,6 +12,8 @@ function CarList() {
       .then(setCars);
   }, []);
 
+
+
   return (
     <Wrapper>
       {cars.length > 0 ? (

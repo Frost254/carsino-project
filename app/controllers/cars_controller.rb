@@ -14,7 +14,7 @@ class CarsController < ApplicationController
 
   def update
     car = find_car
-    car.update(car_params)
+    car.update(params.permit(:rating))
     render json: car, status: :accepted
   end
 
@@ -31,6 +31,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.permit(:name, :image_url, :description)
+    params.permit(:name, :image_url, :description, :rating)
   end
 end

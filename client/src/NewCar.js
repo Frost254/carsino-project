@@ -36,6 +36,9 @@ function NewCar({ user }) {
     });
   }
 
+
+
+
   return (
     <Wrapper>
       <WrapperChild>
@@ -99,6 +102,12 @@ function NewCar({ user }) {
             &nbsp;·&nbsp;
           <cite>By {user.username}</cite>
           </p>
+          <Button color="primary" type="delete">
+            Delete Car
+          </Button>
+          <Button color="primary" type="submit">
+            Add Car Rating
+          </Button>
         </Box>
       </WrapperChild>
     </Wrapper>
