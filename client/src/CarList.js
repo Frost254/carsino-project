@@ -13,10 +13,24 @@ function CarList() {
       .then(setCars);
     }, []);
 
+  function handleDeleteCar(carToDelete) {
+    const updatedCars = cars.filter((car) => car.id !== carToDelete.id);
+    setCars(updatedCars);
+  }
+
+  function handleUpdateCar(updatedCar) {
+    const updatedCars = cars.map((car) =>
+      car.id === updatedCar.id ? updatedCar : car
+    );
+    setCars(updatedCars);
+  }
+
   const carCards = cars.map((car) => (
     <CarCard
       key={car.id}
       car={car}
+      onDelete={handleDeleteCar}
+      onUpdate={handleUpdateCar}
     />
   ));
 

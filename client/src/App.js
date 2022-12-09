@@ -7,6 +7,7 @@ import NewCar from "./NewCar";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [cars, setCars] = useState([]);
 
   useEffect(() => {
     // auto-login
@@ -17,6 +18,10 @@ function App() {
     });
   }, []);
 
+  function handleAddCar(newCar) {
+    setCars([...cars, newCar]);
+  }
+
   if (!user) return <Login onLogin={setUser} />;
 
   return (
@@ -25,7 +30,7 @@ function App() {
       <main>
         <Switch>
           <Route path="/new">
-            <NewCar user={user} />
+            <NewCar user={user} onAddCar={handleAddCar} />
           </Route>
           <Route path="/">
             <CarList />

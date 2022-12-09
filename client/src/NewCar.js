@@ -4,28 +4,37 @@ import styled from "styled-components";
 import { Button, Error, FormField, Input, Label, Textarea } from "./styles";
 
 function NewCar({ user }) {
-  const [name, setName] = useState("My New Car");
-  const [image_url, setImageUrl] = useState("https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
-  const [description, setDescription] = useState("This car goes from 0 to 60 in 6 seconds. It is still in a mint condition. ");
-  const [rating, setRating] = useState("0")
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  const [formData, setFormData] = useState({
+    name: "My New Car",
+    image_url: "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "This car goes from 0 to 60 in 6 seconds. It is still in a mint condition. ",
+  });
+
+  function handleChange(event) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
+
+    const newCar = {
+      ...formData,
+      rating: 0
+    }
+
     fetch("/cars", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name,
-        image_url,
-        description,
-        rating
-      }),
+      body: JSON.stringify(newCar),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
@@ -46,8 +55,8 @@ function NewCar({ user }) {
             <Input
               type="text"
               id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formData.name}
+              onChange={handleChange}
             />
           </FormField>
           <FormField>
@@ -55,17 +64,8 @@ function NewCar({ user }) {
             <Input
               type="text"
               id="image_url"
-              value={image_url}
-              onChange={(e) => setImageUrl(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Label htmlFor="rating">Enter your rating: </Label>
-            <Input
-              type="text"
-              id="rating"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
+              value={formData.image_url}
+              onChange={handleChange}
             />
           </FormField>
           <FormField>
@@ -73,8 +73,8 @@ function NewCar({ user }) {
             <Textarea
               id="description"
               rows="10"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={formData.description}
+              onChange={handleChange}
             />
           </FormField>
           <FormField>
