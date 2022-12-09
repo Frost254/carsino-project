@@ -12,7 +12,13 @@ function CarList() {
       .then(setCars);
   }, []);
 
-
+  function handleDelete () {
+    fetch(`/cars/${car.id}`, {
+    method: "DELETE",
+    })
+    .then((r) => r.json()) // this line will error out, because there is no JSON to parse!
+    .then((data) => console.log(data));
+  }
 
   return (
     <Wrapper>
@@ -27,6 +33,9 @@ function CarList() {
                 &nbsp;·&nbsp;
                 <cite>By {car.user.username}</cite>
               </p>
+              <Button>
+                Delete Car
+              </Button>
             </Box>
           </Car>
         ))
