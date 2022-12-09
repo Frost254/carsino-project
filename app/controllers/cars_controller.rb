@@ -1,6 +1,5 @@
 class CarsController < ApplicationController
-  before_action :authorize
-  skip_before_acton :index
+  before_action :authorize, only: [:create, :update, :destroy]
 
   def index
     render json: Car.all, status: :ok
