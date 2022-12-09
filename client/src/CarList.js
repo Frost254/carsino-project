@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CarCard from "./CarCard";
 import styled from "styled-components";
-import { Box, Button } from "./styles";
+import { Button } from "./styles";
 
 function CarList() {
   const [cars, setCars] = useState([]);
