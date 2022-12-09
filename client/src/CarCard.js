@@ -1,4 +1,6 @@
 import React from "react";
+import { Box, Button } from "./styles";
+
 
 function CarCard({ car }) {
   const { id, name, image_url, description, rating } = car;
@@ -33,6 +35,7 @@ function CarCard({ car }) {
       <h2>{name}</h2>
       <img src={image_url} alt={name}/>
       <p>{rating} thumbs up </p>
+      <p>{description}</p>
       <button onClick={handleLikeClick}>
         Add Rating {"<3"}
       </button>

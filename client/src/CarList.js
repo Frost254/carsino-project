@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import CarCard from "./CarCard";
 import styled from "styled-components";
 import { Box, Button } from "./styles";
 
 function CarList() {
   const [cars, setCars] = useState([]);
 
-  useEffect(() => {
+    useEffect(() => {
     fetch("/cars")
       .then((r) => r.json())
       .then(setCars);
-  }, []);
+    }, []);
 
-  function handleDelete () {
-    fetch(`/cars/${car.id}`, {
-    method: "DELETE",
-    })
-    .then((r) => r.json()) // this line will error out, because there is no JSON to parse!
-    .then((data) => console.log(data));
-  }
+  const carCards = cars.map((car) => (
+    <CarCard
+      key={car.id}
+      car={car}
+    />
+  ));
 
   return (
     <Wrapper>

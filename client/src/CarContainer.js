@@ -19,7 +19,7 @@ function CarContainer() {
     />
   ));
 
-  return <div id="toy-collection">{carCards}</div>;
+  return <div id="car-collection">{carCards}</div>;
 }
 
 export default CarContainer;
